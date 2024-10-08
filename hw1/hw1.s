@@ -1,13 +1,14 @@
-main:
+main: #english comment
     li a0, 0xffffffff
-    jal ra, fp16_to_fp32
+    jal ra, my_clz
     li a7, 10
     ecall
 
 my_clz:
-    addi sp, sp, -8
+    addi sp, sp, -12
     sw ra, 0(sp)
     sw s0, 4(sp)
+    sw s1, 8(sp)
     li s0, 0
 
     srli s1, a0, 16
@@ -34,7 +35,8 @@ after1:
     mv a0, s0
     lw ra, 0(sp)
     lw s0, 4(sp)
-    addi sp, sp, 8
+    lw s1, 8(sp)
+    addi sp, sp, 12
     jr ra
 
 #my_clz end
