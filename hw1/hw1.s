@@ -1,5 +1,5 @@
-main: #english comment
-    li a0, 0xffffffff
+main:
+    li a0, 0xFFFFFFFF
     jal ra, my_clz
     li a7, 10
     ecall
@@ -16,18 +16,22 @@ my_clz:
     addi s0, s0, 16
     srli a0, a0, 16
 after16:
+    srli s1, a0, 8
     bnez s1, after8
     addi s0, s0, 8
     srli a0, a0, 8
 after8:
+    srli s1, a0, 4
     bnez s1, after4
     addi s0, s0, 4
     srli a0, a0, 4
 after4:
+    srli s1, a0, 2
     bnez s1, after2
     addi s0, s0, 2
     srli a0, a0, 2
 after2:
+    srli s1, a0, 1
     bnez s1, after1
     addi s0, s0, 1
     srli a0, a0, 1
