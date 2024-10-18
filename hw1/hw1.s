@@ -1,6 +1,6 @@
 .data
-testcase:    .word 0x1, 0xFFFFFFFF, 0x3FFF
-answer:    .word 31, 0, 18
+testcase:    .word 0x3C00, 0x6FFF, 0x387A
+answer:    .word 0x3F800000, 0x45FFE000, 0x3F0F4000
 true:    .string "true"
 false:    .string "false"
 newline: .string "\n"
@@ -13,7 +13,7 @@ main:
     la t1, answer
 testLoop:
     lw a0, 0(t0)
-    jal ra, my_clz
+    jal ra, fp16_to_fp32
     lw t3, 0(t1)
     beq a0, t3, setTrue
     la a0, false
